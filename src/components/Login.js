@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { handleRecieveUsers } from "./../actions/users";
+import { handleReceiveUsers } from "./../actions/users";
 import { setAuthedUser } from "./../actions/authedUser";
 
 class Login extends Component {
@@ -9,17 +9,19 @@ class Login extends Component {
 	};
 
 	componentDidMount() {
-		this.props.dispatch(handleRecieveUsers());
+		this.props.dispatch(handleReceiveUsers());
 	}
 
 	handleChange = (e) => {
-		console.log(e.target.value);
 		this.setState({ userId: e.target.value });
 	};
 
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.dispatch(setAuthedUser(this.state.userId));
+
+		// Redirect to /
+		this.props.history.push("/");
 	};
 
 	render() {
@@ -44,7 +46,7 @@ class Login extends Component {
 										</option>
 									))}
 								</select>
-								<button>Sign In</button>
+								<button className="btn">Sign In</button>
 							</form>
 						</div>
 					</div>

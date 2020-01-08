@@ -2,11 +2,11 @@
 - get the users and stick them in state slice  
 */
 
-import { GET_USERS } from "./../actions/users";
+import { RECEIVE_USERS } from "./../actions/users";
 
 export default function users(state = {}, action) {
 	switch (action.type) {
-		case GET_USERS:
+		case RECEIVE_USERS:
 			return {
 				...state,
 				...action.users

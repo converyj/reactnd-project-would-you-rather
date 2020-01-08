@@ -26,11 +26,13 @@ a {
 	font-size: 16px;
 	width: 250px;
 	position: relative;
+	width: 100%;
 }
 
 .btn:hover {
 	border-color: rgba(0, 0, 0, .5);
 	text-decoration: none;
+	background-color: #00d6d6;
 }
 
 .btn:focus {
@@ -167,4 +169,20 @@ select {
 	width: 100%;
 	color: gray;
 	height: 50px;
+}
+
+nav {
+	border-bottom: 2px solid #00d6d6;
+}
+
+nav ul {
+	display: flex;
+}
+
+/* nav div {
+	display: flex;
+	justify-content: end;
+}*/
+.end {
+	justify-content: flex-end;
 }

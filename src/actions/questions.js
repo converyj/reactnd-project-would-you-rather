@@ -4,19 +4,20 @@
 
 import { _getQuestions } from "../utils/_DATA";
 
-const GET_QUESTIONS = "GET_QUESTIONS";
+export const RECEIVE_QUESTIONS = "RECEIVE_QUESTIONS";
 
-function recieveQuestions(questions) {
+export function receiveQuestions(questions) {
+	console.log(questions);
 	return {
-		type: GET_QUESTIONS,
+		type: RECEIVE_QUESTIONS,
 		questions
 	};
 }
 
-export function handleRecieveQuestions() {
+export function handleReceiveQuestions() {
 	return (dispatch) => {
 		return _getQuestions().then((questions) => {
-			dispatch(recieveQuestions(questions));
+			dispatch(receiveQuestions(questions));
 		});
 	};
 }

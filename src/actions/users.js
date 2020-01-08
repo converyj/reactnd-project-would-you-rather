@@ -4,19 +4,19 @@
 
 import { _getUsers } from "./../utils/_DATA";
 
-export const GET_USERS = "GET_USERS";
+export const RECEIVE_USERS = "RECEIVE_USERS";
 
-function recieveUsers(users) {
+export function receiveUsers(users) {
 	return {
-		type: GET_USERS,
+		type: RECEIVE_USERS,
 		users
 	};
 }
 
-export function handleRecieveUsers() {
+export function handleReceiveUsers() {
 	return (dispatch) => {
 		return _getUsers().then((users) => {
-			dispatch(recieveUsers(users));
+			dispatch(receiveUsers(users));
 		});
 	};
 }
