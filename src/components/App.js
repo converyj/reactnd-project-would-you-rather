@@ -1,10 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Login from "./Login";
 import Navbar from "./Navbar";
 import DashBoard from "./Dashboard";
-import Router from "./Router";
+// import Routes from "./Router";
 import { handleInitialData } from "./../actions/shared";
 import { connect } from "react-redux";
+import { setAuthedUser } from "./../actions/authedUser";
+import Router from "./Router";
 
 class App extends Component {
 	componentDidMount() {
@@ -12,12 +14,19 @@ class App extends Component {
 	}
 	render() {
 		return (
-			<div className="my-container">
-				<Navbar />
-				<Router />
-			</div>
+			<Fragment>
+				<div className="my-container">
+					<Navbar />
+					<Router notLoggedIn={this.props.notLoggedIn} />
+				</div>
+			</Fragment>
 		);
 	}
 }
 
-export default connect()(App);
+const mapStateToProps = ({ authedUser }) => {
+	return {
+		notLoggedIn: authedUser === null
+	};
+};
+export default connect(mapStateToProps)(App);

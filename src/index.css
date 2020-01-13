@@ -10,6 +10,10 @@ a {
 	color: #252525;
 }
 
+img {
+	max-width: 150px;
+}
+
 .my-container {
 	max-width: 1000px;
 	margin: 0 auto;
@@ -39,6 +43,11 @@ a {
 	outline: 0;
 	font-weight: 700;
 	border-width: 2px;
+}
+
+.btn-accent {
+	border-color: #00d6d6;
+	color: #00d6d6;
 }
 
 .center {
@@ -185,4 +194,33 @@ nav ul {
 }*/
 .end {
 	justify-content: flex-end;
+}
+
+.divider {
+	display: flex;
+	justify-content: center;
+}
+.divider span {
+	position: relative;
+	display: inline-block;
+}
+
+.divider > span:before,
+.divider > span:after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	width: 430px;
+	height: 1px;
+	background: gray;
+}
+
+.divider > span:before {
+	right: 100%;
+	margin-right: 15px;
+}
+
+.divider > span:after {
+	left: 100%;
+	margin-left: 15px;
 }

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { NavLink, Link } from "react-router-dom";
 
 class Navbar extends Component {
 	render() {
@@ -8,16 +9,19 @@ class Navbar extends Component {
 		return (
 			<nav>
 				<ul>
-					<li>Home</li>
-					<li>New Question</li>
-					<li>Leader Board</li>
+					<NavLink to="/">Home</NavLink>
+					<NavLink to="/add">New Question</NavLink>
+					<NavLink to="leaderboard">Leader Board</NavLink>
 
 					{authedUser !== null && (
 						<Fragment>
-							<li className="end">
+							<span>
 								Hello, {authedUser} <img src={avatar} alt="" />
-							</li>
-							<li className="end">Logout</li>
+							</span>
+							<span>
+								<Link to="/logout" />
+								<button>Logout</button>
+							</span>
 						</Fragment>
 					)}
 				</ul>

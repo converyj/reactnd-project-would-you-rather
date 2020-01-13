@@ -8,10 +8,6 @@ class Login extends Component {
 		userId: ""
 	};
 
-	componentDidMount() {
-		this.props.dispatch(handleReceiveUsers());
-	}
-
 	handleChange = (e) => {
 		this.setState({ userId: e.target.value });
 	};
