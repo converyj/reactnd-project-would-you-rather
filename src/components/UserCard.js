@@ -1,7 +1,7 @@
 /*
 UserCard Component (Container) is responsible for: 
  - displaying card header and avatar 
- - displaying each of the following child components depending on the URL question_id
+ - displaying each of the following child components depending if the URL has question_id
 	- Poll - if question_id doesn't exist
 	- PollQuestion - if question_id does exist but is unanswered
 	- PollResults - if question_id does exist and it is answered 
@@ -26,11 +26,11 @@ const PollContent = (props) => {
 
 	switch (pollType) {
 		case pollTypes.POLL:
-			return <Poll question={question} />;
+			return <Poll question={question} unanswered={unanswered} />;
 		case pollTypes.POLL_QUESTION:
-			return <PollQuestion question={question} />;
+			return <PollQuestion question={question} unanswered={unanswered} />;
 		case pollTypes.POLL_RESULTS:
-			return <PollResults question={question} />;
+			return <PollResults question={question} unanswered={unanswered} />;
 		default:
 			return;
 	}
@@ -39,7 +39,7 @@ const PollContent = (props) => {
 class UserCard extends Component {
 	render() {
 		console.log(this.props);
-		const { author, question, pollType } = this.props;
+		const { author, question, pollType, unanswered } = this.props;
 
 		return (
 			<div>
@@ -58,6 +58,7 @@ class UserCard extends Component {
 									<PollContent
 										pollType={pollType}
 										question={question}
+										unanswered={unanswered}
 									/>
 								</div>
 							</div>

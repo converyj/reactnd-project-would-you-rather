@@ -4,6 +4,7 @@ import Dashboard from "./Dashboard";
 import Login from "./Login";
 import UserCard from "./UserCard";
 import NewPoll from "./NewPoll";
+import Leaderboard from "./Leaderboard";
 
 const Router = (props) => {
 	console.log(props);
@@ -14,9 +15,10 @@ const Router = (props) => {
 				props.notLoggedIn ? <Route path="/" exact component={Login} /> :
 				<Fragment>
 					<Route path="/" exact component={Dashboard} />
-					{/* <Route path="/leaderboard" exact component={LeaderBoard} /> */}
-					<Route path="/add" component={NewPoll} />
+					<Route path="/leaderboard" exact component={Leaderboard} />
+					<Route path="/add" exact component={NewPoll} />
 					<Route
+						exact
 						path="/questions/:question_id"
 						component={UserCard}
 					/>

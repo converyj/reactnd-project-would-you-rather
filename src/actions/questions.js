@@ -50,7 +50,7 @@ function addQuestion(question) {
  Handle saving new poll 
   - call saveQuestion passing author, optionOne, optionTwo
   - addQuestionToUser - add poll to user's (authedUser) questions array 
-	 - purpose: ????????????????? - doesn't matter on interface?  
+	 - purpose: Sum up all to Questions user asked in Leaderboard Component 
   - addQuestion - add poll question list 
 	 - purpose: add to question list in Dashboard Component
   - accept parameters: optionOne, optionTwo text 
@@ -61,16 +61,14 @@ export function handleSaveQuestion(optionOne, optionTwo) {
 		console.log(optionOne, optionTwo, authedUser);
 		dispatch(showLoading());
 
-		return (
-			saveQuestion({
-				author: authedUser,
-				optionOne,
-				optionTwo
-			})
-				// .then((question) => dispatch(addQuestionToUser(question)))
-				.then((question) => dispatch(addQuestion(question)))
-				.then(() => dispatch(hideLoading()))
-		);
+		return saveQuestion({
+			author: authedUser,
+			optionOne,
+			optionTwo
+		})
+			.then((question) => dispatch(addQuestionToUser(question)))
+			.then((question) => dispatch(addQuestion(question)))
+			.then(() => dispatch(hideLoading()));
 	};
 }
 

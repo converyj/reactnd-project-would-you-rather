@@ -34,7 +34,9 @@ class Login extends Component {
 						<h5 className="card-title text-info">Sign In</h5>
 						<div className="my-container">
 							<form onSubmit={this.handleSubmit}>
-								<select onChange={this.handleChange}>
+								<select
+									className="form-control form-control-lg"
+									onChange={this.handleChange}>
 									<option>Please Select</option>
 									{Object.keys(users).map((user) => (
 										<option key={user} value={user}>

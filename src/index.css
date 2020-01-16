@@ -224,3 +224,13 @@ nav ul {
 	left: 100%;
 	margin-left: 15px;
 }
+
+.results {
+	position: relative;
+}
+
+.label {
+	position: absolute;
+	bottom: 70%;
+	right: 0;
+}

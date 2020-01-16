@@ -46,7 +46,7 @@ class NewPoll extends Component {
 							<div className="form-group">
 								<input
 									type="text"
-									className="form-control"
+									className="form-control form-control-lg"
 									id="optionOne"
 									name="optionOne"
 									value={optionOne}
@@ -61,7 +61,7 @@ class NewPoll extends Component {
 							<div className="form-group">
 								<input
 									type="text"
-									className="form-control"
+									className="form-control form-control-lg"
 									id="optionTwo"
 									name="optionTwo"
 									value={optionTwo}

@@ -1,7 +1,6 @@
 /*
 * Dashboard Component (Container) Responsible for:
 	- Showing authedUser's answered/unanswered questions 
-	- Show users and their questions 
 */
 
 import React, { Component, Fragment } from "react";

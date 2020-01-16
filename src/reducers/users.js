@@ -35,7 +35,7 @@ export default function users(state = {}, action) {
 			};
 
 		/*
-		Add poll id to user's (authedUser) questions array ????????????
+		Add poll id to user's (authedUser) questions array
 		why does _saveQuestion in _DATA.js file declare the questions object before using it and this doesn't?
 	 	*/
 		case ADD_QUESTION_TO_USER:

@@ -8,22 +8,26 @@ class Navbar extends Component {
 		const { authedUser, avatar } = this.props;
 		return (
 			<nav>
-				<ul>
-					<NavLink to="/">Home</NavLink>
-					<NavLink to="/add">New Question</NavLink>
-					<NavLink to="leaderboard">Leader Board</NavLink>
-
-					{authedUser !== null && (
-						<Fragment>
-							<span>
-								Hello, {authedUser} <img src={avatar} alt="" />
-							</span>
-							<span>
-								<Link to="/logout" />
-								<button>Logout</button>
-							</span>
-						</Fragment>
-					)}
+				<ul className="d-flex justify-content-between">
+					<div className="d-flex justify-content-between">
+						<NavLink to="/">Home</NavLink>
+						<NavLink to="/add">New Question</NavLink>
+						<NavLink to="leaderboard">Leader Board</NavLink>
+					</div>
+					<div>
+						{authedUser !== null && (
+							<Fragment>
+								<span>
+									Hello, {authedUser}{" "}
+									<img src={avatar} alt="" />
+								</span>
+								<span>
+									<Link to="/logout" />
+									<button>Logout</button>
+								</span>
+							</Fragment>
+						)}
+					</div>
 				</ul>
 			</nav>
 		);
