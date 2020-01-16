@@ -27,10 +27,11 @@ export function addAnswerToUser({ authedUser, qid, answer }) {
 }
 
 /*
-Add poll id to user's (authedUser) questions array ????????????
+Add poll id to user's (authedUser) questions array
 Parameter: question - object type containing author (authedUser) and id (question id)
 */
 export function addQuestionToUser({ author, id }) {
+	console.log(author, id);
 	return {
 		type: ADD_QUESTION_TO_USER,
 		author,

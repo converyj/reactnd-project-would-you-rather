@@ -35,3 +35,12 @@ export const styles = {
 		bgColor: "#f4f4f4"
 	}
 };
+
+export const btnColors = {
+	primary: {
+		color: "btn-success"
+	},
+	secondary: {
+		color: "btn-primary"
+	}
+};

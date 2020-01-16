@@ -8,13 +8,13 @@ PollQuestion Component Responsible for:
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { btnColors } from "../utils/helpers";
 
 import { handleSaveQuestionAnswer } from "./../actions/questions";
 
 class PollQuestion extends Component {
 	state = {
-		option: "",
-		goHome: false
+		option: ""
 	};
 
 	handleChoice = (e) => {
@@ -24,19 +24,19 @@ class PollQuestion extends Component {
 	saveAnswer = (e) => {
 		const { dispatch, question } = this.props;
 		const { option } = this.state;
-		e.preventDefault();
 
+		e.preventDefault();
 		dispatch(handleSaveQuestionAnswer(question, option));
-		this.setState({ goHome: true });
 	};
 
 	render() {
 		const { question } = this.props;
-		const { option, goHome } = this.state;
+		const { option } = this.state;
 
-		if (goHome) {
-			return <Redirect to={"/"} />;
-		}
+		const disabled =
+
+				option === "" ? true :
+				false;
 
 		return (
 			<Fragment>
@@ -70,7 +70,10 @@ class PollQuestion extends Component {
 							{question.optionTwo.text}
 						</label>
 					</div>
-					<button className="btn" type="submit">
+					<button
+						className={`btn btn-block ${btnColors.primary.color}`}
+						type="submit"
+						disabled={disabled}>
 						Submit
 					</button>
 				</form>

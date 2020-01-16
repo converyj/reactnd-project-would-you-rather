@@ -16,7 +16,6 @@ class App extends Component {
 		return (
 			<Fragment>
 				<div className="my-container">
-					<Navbar />
 					<Router notLoggedIn={this.props.notLoggedIn} />
 				</div>
 			</Fragment>

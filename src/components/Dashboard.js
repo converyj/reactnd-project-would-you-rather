@@ -12,16 +12,12 @@ import { Redirect } from "react-router-dom";
 import UserCard from "./UserCard";
 
 export class Dashboard extends Component {
-	// componentDidMount() {
-	// 	this.props.dispatch(setAuthedUser("sarahedo"));
-	// }
 	render() {
 		console.log(this.props);
 
 		// tab view of answered and unanswered questions from props
 		return (
 			<Fragment>
-				{/* {!this.props.loggedIn && <Redirect to={"/login"} />} */}
 				<ul className="nav nav-tabs" id="myTab" role="tablist">
 					<li className="nav-item">
 						<a

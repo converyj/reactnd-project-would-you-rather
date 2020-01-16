@@ -14,17 +14,28 @@ img {
 	max-width: 150px;
 }
 
+.btn {
+	margin-top: 10px;
+}
+.big {
+	max-width: 360px;
+}
+
+.small {
+	max-width: 50px;
+}
+
 .my-container {
 	max-width: 1000px;
 	margin: 0 auto;
 	padding: 10px;
 }
 
-.btn {
+.my-btn {
 	text-transform: uppercase;
 	margin: 35px auto;
 	padding: 10px;
-	border: 1px solid rgba(0, 0, 0, .29);
+	/* border: 1px solid rgba(0, 0, 0, .29); */
 	cursor: pointer;
 	background: #fff;
 	font-size: 16px;
@@ -33,19 +44,19 @@ img {
 	width: 100%;
 }
 
-.btn:hover {
+.my-btn:hover {
 	border-color: rgba(0, 0, 0, .5);
 	text-decoration: none;
-	background-color: #00d6d6;
+	background-color: lightblue;
 }
 
-.btn:focus {
+.my-btn:focus {
 	outline: 0;
 	font-weight: 700;
 	border-width: 2px;
 }
 
-.btn-accent {
+.my-btn-accent {
 	border-color: #00d6d6;
 	color: #00d6d6;
 }

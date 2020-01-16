@@ -70,7 +70,9 @@ class NewPoll extends Component {
 									placeholder="Enter Option Two..."
 								/>
 							</div>
-							<button type="submit" className="btn">
+							<button
+								type="submit"
+								className="btn btn-success btn-block">
 								Submit
 							</button>
 						</form>

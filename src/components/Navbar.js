@@ -1,32 +1,48 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
+import { setAuthedUser } from "../actions/authedUser";
 
 class Navbar extends Component {
+	handleLogout = (e) => {
+		e.preventDefault();
+		this.props.dispatch(setAuthedUser(null));
+
+		this.props.history.push("/");
+	};
+
 	render() {
 		console.log(this.props);
-		const { authedUser, avatar } = this.props;
+		const { user } = this.props;
 		return (
 			<nav>
 				<ul className="d-flex justify-content-between">
-					<div className="d-flex justify-content-between">
+					<div>
 						<NavLink to="/">Home</NavLink>
 						<NavLink to="/add">New Question</NavLink>
 						<NavLink to="leaderboard">Leader Board</NavLink>
 					</div>
 					<div>
-						{authedUser !== null && (
-							<Fragment>
-								<span>
-									Hello, {authedUser}{" "}
-									<img src={avatar} alt="" />
-								</span>
-								<span>
-									<Link to="/logout" />
-									<button>Logout</button>
-								</span>
-							</Fragment>
-						)}
+						<Fragment>
+							<span>
+								<img
+									className="small p-1"
+									src={user.avatarURL}
+									alt=""
+								/>
+								Hello, {user.id}{" "}
+							</span>
+							<span>
+								<button
+									onClick={this.handleLogout}
+									className="btn btn-secondary">
+									Logout
+									<span className="p-2">
+										<i className="fa fa-sign-out" />
+									</span>
+								</button>
+							</span>
+						</Fragment>
 					</div>
 				</ul>
 			</nav>
@@ -34,13 +50,12 @@ class Navbar extends Component {
 	}
 }
 
-const mapStateToProps = ({ authedUser, users }) => {
-	const avatar = users[authedUser];
+const mapStateToProps = ({ users, authedUser }) => {
+	const user = users[authedUser];
 
 	return {
-		authedUser,
-		avatar
+		user
 	};
 };
 
-export default connect(mapStateToProps)(Navbar);
+export default withRouter(connect(mapStateToProps)(Navbar));

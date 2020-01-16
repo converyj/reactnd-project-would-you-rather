@@ -15,7 +15,6 @@ export const ADD_QUESTION_TO_USER = "ADD_QUESTION_TO_USER";
 export const ADD_QUESTION = "ADD_QUESTION";
 
 export function receiveQuestions(questions) {
-	console.log(questions);
 	return {
 		type: RECEIVE_QUESTIONS,
 		questions
@@ -40,6 +39,7 @@ Add poll question to questions object
 Parameters: question - object type containing question
 */
 function addQuestion(question) {
+	console.log(question);
 	return {
 		type: ADD_QUESTION,
 		question
@@ -58,17 +58,16 @@ function addQuestion(question) {
 export function handleSaveQuestion(optionOne, optionTwo) {
 	return (dispatch, getState) => {
 		const { authedUser } = getState();
-		console.log(optionOne, optionTwo, authedUser);
 		dispatch(showLoading());
 
 		return saveQuestion({
 			author: authedUser,
 			optionOne,
 			optionTwo
-		})
-			.then((question) => dispatch(addQuestionToUser(question)))
-			.then((question) => dispatch(addQuestion(question)))
-			.then(() => dispatch(hideLoading()));
+		}).then((question) => {
+			dispatch(addQuestionToUser(question));
+			dispatch(addQuestion(question)).then(() => dispatch(hideLoading()));
+		});
 	};
 }
 

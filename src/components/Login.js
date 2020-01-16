@@ -23,6 +23,12 @@ class Login extends Component {
 	render() {
 		console.log(this.props);
 		const { users } = this.props;
+
+		const disabled =
+
+				this.state.userId === "" ? true :
+				false;
+
 		return (
 			<div>
 				<div className="card text-center">
@@ -31,20 +37,31 @@ class Login extends Component {
 						<p>Please sign in to continue</p>
 					</div>
 					<div className="card-body">
-						<h5 className="card-title text-info">Sign In</h5>
+						<img
+							className="card-img-top big"
+							src="/images/all.png"
+							alt=""
+						/>
+						<h1 className="card-title text-success font-wieght-bold">
+							Sign In
+						</h1>
 						<div className="my-container">
 							<form onSubmit={this.handleSubmit}>
 								<select
 									className="form-control form-control-lg"
 									onChange={this.handleChange}>
-									<option>Please Select</option>
-									{Object.keys(users).map((user) => (
-										<option key={user} value={user}>
-											{users[user].name}
+									<option>Select a Friend</option>
+									{Object.values(users).map((user) => (
+										<option key={user.id} value={user.id}>
+											{user.id}
 										</option>
 									))}
 								</select>
-								<button className="btn">Sign In</button>
+								<button
+									className="btn btn-success btn-block mt-5"
+									disabled={disabled}>
+									Sign In
+								</button>
 							</form>
 						</div>
 					</div>

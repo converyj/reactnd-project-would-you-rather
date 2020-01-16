@@ -2,7 +2,7 @@ let users = {
 	sarahedo: {
 		id: "sarahedo",
 		name: "Sarah Edo",
-		avatarURL: "/images/avatar1.jpg",
+		avatarURL: "/images/avatar1.png",
 		answers: {
 			"8xf0y6ziyjabvozdd253nd": "optionOne",
 			"6ni6ok3ym7mf1p33lnez": "optionTwo",
@@ -30,7 +30,7 @@ let users = {
 	johndoe: {
 		id: "johndoe",
 		name: "John Doe",
-		avatarURL: "images/avatar3.png",
+		avatarURL: "/images/avatar3.png",
 		answers: {
 			xj352vofupe1dqz9emx13r: "optionOne",
 			vthrdm985a262al8qx3do: "optionTwo",
@@ -160,18 +160,19 @@ export function _getQuestions() {
 	});
 }
 
-function formatQuestion({ optionOneText, optionTwoText, author }) {
+function formatQuestion({ optionOne, optionTwo, author }) {
+	console.log(optionOne, optionTwo);
 	return {
 		id: generateUID(),
 		timestamp: Date.now(),
 		author,
 		optionOne: {
 			votes: [],
-			text: optionOneText
+			text: optionOne
 		},
 		optionTwo: {
 			votes: [],
-			text: optionTwoText
+			text: optionTwo
 		}
 	};
 }
@@ -181,7 +182,7 @@ export function _saveQuestion(question) {
 	return new Promise((res, rej) => {
 		const authedUser = question.author;
 		const formattedQuestion = formatQuestion(question);
-
+		console.log(formattedQuestion);
 		setTimeout(() => {
 			questions = {
 				...questions,

@@ -24,7 +24,7 @@ export default function users(state = {}, action) {
 			const { authedUser, qid, answer } = action;
 			console.log(action);
 			return {
-				...state, // state is users not questions?
+				...state,
 				[authedUser]: {
 					...state[authedUser],
 					answers: {
@@ -46,7 +46,7 @@ export default function users(state = {}, action) {
 				[author]: {
 					...state[author],
 					questions: [
-						...state[author][id].questions,
+						...state[author].questions,
 						id
 					]
 				}

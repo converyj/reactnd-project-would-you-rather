@@ -4,30 +4,46 @@ Poll Component (Presentional) is responsible for showing the specific poll (answ
 */
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import { btnColors } from "./../utils/helpers";
 
 class Poll extends Component {
+	handleClick = () => {
+		const { question } = this.props;
+
+		this.props.history.push(`/questions/${question.id}`);
+	};
 	render() {
 		const { question, unanswered } = this.props;
+
+		const buttonColor =
+
+				unanswered === true ? btnColors.primary :
+				btnColors.secondary;
+
+		const buttonContent =
+
+				unanswered === true ? "Answer Poll" :
+				"Results";
 
 		return (
 			<div>
 				<p className="bold">Would You Rather</p>
 				<div className="my-container">
 					<p className="text-center">
-						{question.optionOne.text} or...
+						{question.optionOne.text}
+						<br />
+						or...
 					</p>
-					<Link
-						to={`/questions/${question.id}`}
-						className="btn btn-accent">
-						{
-							unanswered ? "Answer Poll" :
-							"Results"}
-					</Link>
+					<button
+						onClick={this.handleClick}
+						className={`btn btn-block ${buttonColor.color}`}>
+						{buttonContent}
+					</button>
 				</div>
 			</div>
 		);
 	}
 }
 
-export default Poll;
+export default withRouter(Poll);

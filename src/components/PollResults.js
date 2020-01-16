@@ -28,20 +28,15 @@ class PollResults extends Component {
 		const optionTwoVotes = question.optionTwo.votes.length;
 		const votesTotal = optionOneVotes + optionTwoVotes;
 		const userVote = user.answers[question.id];
-		console.log(userVote);
-		console.log(optionOneVotes, optionTwoVotes);
+
 		let option1 = styles.secondary,
 			option2 = styles.secondary;
 		if (optionOneVotes > optionTwoVotes) {
-			console.log(optionOneVotes);
 			option1 = styles.primary;
 		}
 		else if (optionTwoVotes > optionOneVotes) {
-			console.log(optionTwoVotes);
 			option2 = styles.primary;
 		}
-
-		console.log("Option1:", option1, "Option2:", option2);
 
 		return (
 			<Fragment>
@@ -103,7 +98,9 @@ class PollResults extends Component {
 						{optionTwoVotes} out of {votesTotal}
 					</p>
 				</div>
-				<button className="btn-info" onClick={this.handleClick}>
+				<button
+					className="btn btn-secondary"
+					onClick={this.handleClick}>
 					Back
 				</button>
 			</Fragment>

@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import Poll from "./Poll";
 import PollQuestion from "./PollQuestion";
 import PollResults from "./PollResults";
+import { Redirect } from "react-router-dom";
 
 // object of constants for type of polls
 const pollTypes = {
@@ -28,9 +29,9 @@ const PollContent = (props) => {
 		case pollTypes.POLL:
 			return <Poll question={question} unanswered={unanswered} />;
 		case pollTypes.POLL_QUESTION:
-			return <PollQuestion question={question} unanswered={unanswered} />;
+			return <PollQuestion question={question} />;
 		case pollTypes.POLL_RESULTS:
-			return <PollResults question={question} unanswered={unanswered} />;
+			return <PollResults question={question} />;
 		default:
 			return;
 	}
@@ -39,19 +40,26 @@ const PollContent = (props) => {
 class UserCard extends Component {
 	render() {
 		console.log(this.props);
-		const { author, question, pollType, unanswered } = this.props;
+		const { author, question, pollType, unanswered, badPath } = this.props;
+
+		if (badPath === true) {
+			return <Redirect to="questions/bad_id" />;
+		}
 
 		return (
 			<div>
 				<div className="card text-center">
-					<div className="card-header">
+					<div className="card-header font-weight-bold">
 						<p className="text-left">{author.name} asks: </p>
 					</div>
 					<div className="card-body">
 						<div className="container">
 							<div className="row">
-								<div className="col">
-									<img src={author.avatarURL} alt="" />
+								<div className="col-4">
+									<img
+										src={author.avatarURL}
+										alt="User Avatar"
+									/>
 								</div>
 								<div className="col text-left">
 									{/* pass child component what it needs from connect */}
@@ -89,17 +97,21 @@ const mapStateToProps = (
 	{ users, questions, authedUser },
 	{ match, question_id }
 ) => {
-	let question, pollType;
-	console.log(authedUser);
+	let question,
+		pollType,
+		badPath = false,
+		author;
 
 	if (question_id !== undefined) {
-		question = questions[question_id];
+		console.log((question = questions[question_id]));
 		pollType = pollTypes.POLL;
+		console.log((author = users[question.author]));
 	}
 	else {
 		const { question_id } = match.params;
 		question = questions[question_id];
 		pollType = pollTypes.POLL_QUESTION;
+		author = users[question.author];
 
 		const user = users[authedUser];
 		if (Object.keys(user.answers).includes(question_id)) {
@@ -107,13 +119,12 @@ const mapStateToProps = (
 		}
 	}
 
-	const author = users[question.author];
-
 	// return question to display, who wrote the question, what type of poll
 	return {
 		question,
 		author,
-		pollType
+		pollType,
+		badPath
 	};
 };
 
