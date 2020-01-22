@@ -13,13 +13,13 @@ $ cd reactnd-project-would-you-rather
 $ npm install
 ```
 
-#Step 2: Launch
+# Launch
 Start the development server with `npm start`
 The project can be viewed in the browser at http://localhost:3000
 
 ## Features
 
-## Data
+### Data
 
 There are two types of objects stored in our database:
 
