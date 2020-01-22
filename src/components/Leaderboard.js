@@ -3,7 +3,7 @@
    - list all users's scores
  */
 
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import LeaderboardCard from "./LeaderboardCard";
