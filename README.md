@@ -1,6 +1,6 @@
 # Would You Rather Project
 
-This is a simple Redux Web Application that allows users to impersonate/log in as existing users to answer exiting polls, create new polls, and see other users' on the leaderboard.
+This is a simple Redux Web Application that allows users to impersonate/log in as existing users to answer exiting polls, create new polls, and see other users' scores on the leaderboard.
 
 It's built with React, Redux, React Router, and React Thunk
 
