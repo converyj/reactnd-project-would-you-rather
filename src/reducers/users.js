@@ -18,7 +18,6 @@ export default function users(state = {}, action) {
 
 		/*
 		Add question id and answer to user's (authedUser) answer property
-		why repeating?
 		*/
 		case ADD_ANSWER_TO_USER:
 			const { authedUser, qid, answer } = action;
@@ -35,7 +34,6 @@ export default function users(state = {}, action) {
 
 		/*
 		Add poll id to user's (authedUser) questions array
-		why does _saveQuestion in _DATA.js file declare the questions object before using it and this doesn't?
 	 	*/
 		case ADD_QUESTION_TO_USER:
 			const { author, id } = action;

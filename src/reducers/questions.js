@@ -18,7 +18,6 @@ export default function questions(state = {}, action) {
 
 		/*
 		Add user (authedUser) to question's votes property depending on which answer
-		why repeating? 
 		*/
 		case ADD_ANSWER_TO_QUESTION:
 			const { qid, answer, authedUser } = action;
