@@ -15,7 +15,7 @@ $ npm install
 
 # Launch
 Start the development server with `npm start`
-The project can be viewed in the browser at http://localhost:3000
+- The project can be viewed in the browser at http://localhost:3000
 
 ## Features
 
