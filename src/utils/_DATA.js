@@ -160,29 +160,26 @@ export function _getQuestions() {
 	});
 }
 
-function formatQuestion({ optionOne, optionTwo, author }) {
-	console.log(optionOne, optionTwo);
+function formatQuestion({ optionOneText, optionTwoText, author }) {
 	return {
 		id: generateUID(),
 		timestamp: Date.now(),
 		author,
 		optionOne: {
 			votes: [],
-			text: optionOne
+			text: optionOneText
 		},
 		optionTwo: {
 			votes: [],
-			text: optionTwo
+			text: optionTwoText
 		}
 	};
 }
 
 export function _saveQuestion(question) {
-	console.log(question);
 	return new Promise((res, rej) => {
 		const authedUser = question.author;
 		const formattedQuestion = formatQuestion(question);
-		console.log(formattedQuestion);
 		setTimeout(() => {
 			questions = {
 				...questions,

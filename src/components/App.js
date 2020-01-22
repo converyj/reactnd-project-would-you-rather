@@ -1,21 +1,29 @@
+/*
+App Component (Container):
+ - wrapper for all components (inside Router) 
+ - get all users and questions 
+*/
+
 import React, { Component, Fragment } from "react";
-import Login from "./Login";
-import Navbar from "./Navbar";
-import DashBoard from "./Dashboard";
-// import Routes from "./Router";
 import { handleInitialData } from "./../actions/shared";
 import { connect } from "react-redux";
-import { setAuthedUser } from "./../actions/authedUser";
 import Router from "./Router";
+import { PropTypes } from "prop-types";
+import { LoadingBar } from "react-redux-loading";
 
 class App extends Component {
+	static propTypes = {
+		notLoggedIn: PropTypes.bool.isRequired
+	};
+
 	componentDidMount() {
 		this.props.dispatch(handleInitialData());
 	}
 	render() {
 		return (
 			<Fragment>
-				<div className="my-container">
+				<div>
+					<LoadingBar />
 					<Router notLoggedIn={this.props.notLoggedIn} />
 				</div>
 			</Fragment>
@@ -23,6 +31,9 @@ class App extends Component {
 	}
 }
 
+/*
+- set boolean whether user is logged in to pass to Router
+*/
 const mapStateToProps = ({ authedUser }) => {
 	return {
 		notLoggedIn: authedUser === null

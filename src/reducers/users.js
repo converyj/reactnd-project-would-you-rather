@@ -1,5 +1,5 @@
 /*
-- get the users and stick them in state slice  
+- handle user slice of state  
 */
 
 import {
@@ -22,7 +22,6 @@ export default function users(state = {}, action) {
 		*/
 		case ADD_ANSWER_TO_USER:
 			const { authedUser, qid, answer } = action;
-			console.log(action);
 			return {
 				...state,
 				[authedUser]: {

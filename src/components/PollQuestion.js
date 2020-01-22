@@ -1,5 +1,5 @@
 /* 
-PollQuestion Component Responsible for:
+PollQuestion Component (Container) Responsible for:
  - displaying the options
  - get the authedUser to save answer 
  - dispatch event to save answer
@@ -7,12 +7,16 @@ PollQuestion Component Responsible for:
 
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { btnColors } from "../utils/helpers";
 
 import { handleSaveQuestionAnswer } from "./../actions/questions";
+import { PropTypes } from "prop-types";
 
 class PollQuestion extends Component {
+	static propTypes = {
+		question: PropTypes.object.isRequired
+	};
+
 	state = {
 		option: ""
 	};

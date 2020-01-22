@@ -1,3 +1,9 @@
+/*
+Router Component (Presentational): 
+ - handle all the routes to components 
+ - handle the Login Component if the user is not logged in 
+*/
+
 import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import Dashboard from "./Dashboard";
@@ -7,36 +13,35 @@ import UserCard from "./UserCard";
 import NewPoll from "./NewPoll";
 import Leaderboard from "./Leaderboard";
 import NoMatch from "./NoMatch";
+import { PropTypes } from "prop-types";
 
 const Router = (props) => {
-	console.log(props);
 	const { notLoggedIn } = props;
 	return (
 		<Fragment>
 			{
-				props.notLoggedIn ? <Route path="/" exact component={Login} /> :
+				notLoggedIn ? <Route path="/" component={Login} /> :
 				<Fragment>
 					<Navbar />
 					<Switch>
 						<Route path="/" exact component={Dashboard} />
+						<Route path="/questions/bad_id" component={NoMatch} />
+						<Route path="/leaderboard" component={Leaderboard} />
+						<Route path="/add" component={NewPoll} />
 						<Route
-							path="/leaderboard"
-							exact
-							component={Leaderboard}
-						/>
-						<Route path="/add" exact component={NewPoll} />
-						<Route
-							exact
 							path="/questions/:question_id"
 							component={UserCard}
 						/>
-						{/* <Route exact path='/logout' component={Logout} /> */}
-						<Route path="/questions/bad_id" component={NoMatch} />
+
 						<Route component={NoMatch} />
 					</Switch>
 				</Fragment>}
 		</Fragment>
 	);
+};
+
+Router.prototype = {
+	notLoggedIn: PropTypes.bool.isRequired
 };
 
 export default Router;

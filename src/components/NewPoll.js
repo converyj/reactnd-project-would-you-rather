@@ -1,5 +1,5 @@
 /*
-New Poll Component responsible for: 
+New Poll Component (Container) responsible for: 
   - set text of new poll 
   - dispatch action to save new poll 
 */
@@ -7,6 +7,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 
 import { handleSaveQuestion } from "./../actions/questions";
+import Spinner from "./Spinner";
 
 class NewPoll extends Component {
 	state = {
@@ -26,22 +27,28 @@ class NewPoll extends Component {
 		this.props.dispatch(
 			handleSaveQuestion(this.state.optionOne, this.state.optionTwo)
 		);
-
-		this.props.history.push("/");
 	};
+
+	// when handleSaveQuestion is finished saving question 0 = loading/1 = finished
+	componentDidUpdate(prevProps) {
+		if (prevProps.loadingBar.default !== 0) {
+			this.props.history.push("/");
+		}
+	}
 
 	render() {
 		const { optionOne, optionTwo } = this.state;
 
 		return (
 			<Fragment>
-				<div className="card">
+				<div className="card new-poll my-container">
 					<div className="card-header text-center">
 						<h1>Create New Question</h1>
 					</div>
 					<div className="card-body">
 						<p className="card-text">Complete the questions</p>
 						<h5 className="card-title">Would You Rather...</h5>
+						{this.props.loadingBar.default === 1 && <Spinner />}
 						<form onSubmit={this.addQuestion}>
 							<div className="form-group">
 								<input
@@ -83,4 +90,12 @@ class NewPoll extends Component {
 	}
 }
 
-export default connect()(NewPoll);
+/*
+- loading state from hide/show loading - react-redux-loading package 
+*/
+const mapStateToProps = ({ loadingBar }) => {
+	return {
+		loadingBar
+	};
+};
+export default connect(mapStateToProps)(NewPoll);

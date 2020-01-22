@@ -1,9 +1,19 @@
+/*
+Login Component (Container):
+ - display all users - user can impersonate/log in as an existing user
+ - set authedUser 
+*/
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { handleReceiveUsers } from "./../actions/users";
 import { setAuthedUser } from "./../actions/authedUser";
+import { PropTypes } from "prop-types";
 
 class Login extends Component {
+	static propTypes = {
+		users: PropTypes.object.isRequired
+	};
+
 	state = {
 		userId: ""
 	};
@@ -15,13 +25,9 @@ class Login extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.props.dispatch(setAuthedUser(this.state.userId));
-
-		// Redirect to /
-		this.props.history.push("/");
 	};
 
 	render() {
-		console.log(this.props);
 		const { users } = this.props;
 
 		const disabled =
@@ -30,7 +36,7 @@ class Login extends Component {
 				false;
 
 		return (
-			<div>
+			<div className="my-container">
 				<div className="card text-center">
 					<div className="card-header">
 						<h2>Welcome to the Would You Rather App!</h2>

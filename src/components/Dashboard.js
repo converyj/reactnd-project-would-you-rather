@@ -3,21 +3,21 @@
 	- Showing authedUser's answered/unanswered questions 
 */
 
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
-import { handleReceiveQuestions } from "../actions/questions";
-import { setAuthedUser } from "./../actions/authedUser";
-import Poll from "./Poll";
-import { Redirect } from "react-router-dom";
 import UserCard from "./UserCard";
+import { PropTypes } from "prop-types";
 
 export class Dashboard extends Component {
-	render() {
-		console.log(this.props);
+	static propTypes = {
+		unansweredQuestions: PropTypes.array.isRequired,
+		answeredQuestions: PropTypes.array.isRequired
+	};
 
+	render() {
 		// tab view of answered and unanswered questions from props
 		return (
-			<Fragment>
+			<div className="my-container">
 				<ul className="nav nav-tabs" id="myTab" role="tablist">
 					<li className="nav-item">
 						<a
@@ -72,21 +72,20 @@ export class Dashboard extends Component {
 						))}
 					</div>
 				</div>
-			</Fragment>
+			</div>
 		);
 	}
 }
 
 /*
-*   - get the authedUser information from users object
+    - get the authedUser information from users object
 	- get the answered questions 
 	   - get the keys from authedUser's answers property
 	- get the unanswered questions 
-	  - get the keys from the questions object and filter out the ones that are in the answer property 
-   - 
+	  - get the keys from the questions object and filter out the ones that are in the user's answer property 
+	- The polls in both categories are arranged from the most recently created (top) to the least recently created (bottom)
 */
 const mapStateToProps = ({ questions, users, authedUser }) => {
-	console.log(authedUser);
 	const user = users[authedUser];
 	const answeredQuestions = Object.keys(user.answers).sort(
 		(a, b) => questions[b].timestamp - questions[a].timestamp

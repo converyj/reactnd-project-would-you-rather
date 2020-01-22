@@ -1,17 +1,21 @@
 /*
-LeaderboardCard Component: 
+LeaderboardCard Component (Presentational): 
 	- display user and their score on the Leaderboard 
 */
 
 import React from "react";
+import { PropTypes } from "prop-types";
 
-const LeaderboardCard = ({ data }) => {
+const LeaderboardCard = ({ data, color }) => {
 	return (
 		<div className="card">
 			<div className="card-body">
+				<span className="rank badge" style={{ backgroundColor: color }}>
+					<i className="fa fa-trophy" />
+				</span>
 				<div className="container">
 					<div className="row">
-						<div className="col d-flex flex-grow-0">
+						<div className="col-3">
 							<img src={data.avatarURL} alt="User Avatar" />
 						</div>
 						<div className="col">
@@ -29,7 +33,7 @@ const LeaderboardCard = ({ data }) => {
 								</tbody>
 							</table>
 						</div>
-						<div className="col">
+						<div className="col-3">
 							<div
 								className="card text-center"
 								style={{ width: 120 }}>
@@ -46,6 +50,11 @@ const LeaderboardCard = ({ data }) => {
 			</div>
 		</div>
 	);
+};
+
+LeaderboardCard.propTypes = {
+	data: PropTypes.object.isRequired,
+	color: PropTypes.string.isRequired
 };
 
 export default LeaderboardCard;

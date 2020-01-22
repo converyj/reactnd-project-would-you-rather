@@ -38,12 +38,11 @@ export default function questions(state = {}, action) {
 			};
 		case ADD_QUESTION:
 			const { question } = action;
-			console.log(question);
 
 			return {
 				...state,
 				[question.id]: {
-					question
+					...question
 				}
 			};
 		default:

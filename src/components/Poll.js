@@ -1,18 +1,26 @@
 /*
-Poll Component (Presentional) is responsible for showing the specific poll (answered and unanswered) 
-  - display question that was passed 
+Poll Component (Presentional) is responsible:
+ - showing the specific poll (answered and unanswered) 
+ - display teaser of question that was passed 
+ - link to PollQuestion Component
 */
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { btnColors } from "./../utils/helpers";
+import { PropTypes } from "prop-types";
 
 class Poll extends Component {
+	static propTypes = {
+		question: PropTypes.object.isRequired,
+		unanswered: PropTypes.bool.isRequired
+	};
+
 	handleClick = () => {
 		const { question } = this.props;
 
 		this.props.history.push(`/questions/${question.id}`);
 	};
+
 	render() {
 		const { question, unanswered } = this.props;
 

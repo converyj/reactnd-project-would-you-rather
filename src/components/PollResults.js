@@ -1,5 +1,5 @@
 /*
-Poll Results Component:
+Poll Results Component (Container):
   - display options 
   - display how many people/percentage voted for each option
  - highlight the option that was selected by user (authedUser)
@@ -7,14 +7,20 @@ Poll Results Component:
 
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { Progress, Segment, Label, Button } from "semantic-ui-react";
 import { styles } from "./../utils/helpers";
 import { withRouter } from "react-router-dom";
+import { PropTypes } from "prop-types";
 
+// show 'Your Vote' label on the option that was answered by the user
 const YourVoteLabel = () => (
 	<span className="label badge-md badge-pill badge-success">Your Vote</span>
 );
 class PollResults extends Component {
+	static propTypes = {
+		question: PropTypes.object.isRequired,
+		user: PropTypes.object.isRequired
+	};
+
 	handleClick = () => {
 		this.props.history.push("/");
 	};
@@ -22,6 +28,7 @@ class PollResults extends Component {
 	render() {
 		const { question, user } = this.props;
 
+		// variables to use
 		const optionOne = question.optionOne.text;
 		const optionTwo = question.optionTwo.text;
 		const optionOneVotes = question.optionOne.votes.length;
@@ -29,12 +36,13 @@ class PollResults extends Component {
 		const votesTotal = optionOneVotes + optionTwoVotes;
 		const userVote = user.answers[question.id];
 
+		// set the colors of the two options to highlight the one the user answered
 		let option1 = styles.secondary,
 			option2 = styles.secondary;
-		if (optionOneVotes > optionTwoVotes) {
+		if (userVote === "optionOne") {
 			option1 = styles.primary;
 		}
-		else if (optionTwoVotes > optionOneVotes) {
+		else {
 			option2 = styles.primary;
 		}
 
@@ -65,7 +73,7 @@ class PollResults extends Component {
 							{(optionOneVotes / votesTotal * 100).toFixed(1)}%
 						</div>
 					</div>
-					<p>
+					<p className="text-center">
 						{optionOneVotes} out of {votesTotal}
 					</p>
 				</div>
@@ -94,7 +102,7 @@ class PollResults extends Component {
 							{(optionTwoVotes / votesTotal * 100).toFixed(1)}%
 						</div>
 					</div>
-					<p>
+					<p className="text-center">
 						{optionTwoVotes} out of {votesTotal}
 					</p>
 				</div>
@@ -109,7 +117,7 @@ class PollResults extends Component {
 }
 
 /*
- - get user (authedUser) object
+ - get authedUser object to access their answers property
 */
 const mapStateToProps = ({ users, authedUser }) => {
 	const user = users[authedUser];
