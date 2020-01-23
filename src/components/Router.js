@@ -16,11 +16,12 @@ import NoMatch from "./NoMatch";
 import { PropTypes } from "prop-types";
 
 const Router = (props) => {
-	const { notLoggedIn } = props;
+	const { isLoggedIn } = props;
 	return (
 		<Fragment>
-			{
-				notLoggedIn ? <Route path="/" component={Login} /> :
+			{// if not logged in
+
+				!isLoggedIn ? <Route path="/" component={Login} /> :
 				<Fragment>
 					<Navbar />
 					<Switch>
@@ -41,7 +42,7 @@ const Router = (props) => {
 };
 
 Router.prototype = {
-	notLoggedIn: PropTypes.bool.isRequired
+	isLoggedIn: PropTypes.bool.isRequired
 };
 
 export default Router;

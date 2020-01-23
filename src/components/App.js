@@ -13,7 +13,7 @@ import { LoadingBar } from "react-redux-loading";
 
 class App extends Component {
 	static propTypes = {
-		notLoggedIn: PropTypes.bool.isRequired
+		isLoggedIn: PropTypes.bool.isRequired
 	};
 
 	componentDidMount() {
@@ -24,7 +24,7 @@ class App extends Component {
 			<Fragment>
 				<div>
 					<LoadingBar />
-					<Router notLoggedIn={this.props.notLoggedIn} />
+					<Router isLoggedIn={this.props.isLoggedIn} />
 				</div>
 			</Fragment>
 		);
@@ -33,10 +33,12 @@ class App extends Component {
 
 /*
 - set boolean whether user is logged in to pass to Router
+- It's better to use isLoggedIn, and !isLoggedIn to signify not logged in
+  - Otherwise, it would be !notLoggedIn which reads as not not logged in
 */
 const mapStateToProps = ({ authedUser }) => {
 	return {
-		notLoggedIn: authedUser === null
+		isLoggedIn: authedUser !== null
 	};
 };
 export default connect(mapStateToProps)(App);
