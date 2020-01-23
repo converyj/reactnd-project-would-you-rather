@@ -29,7 +29,7 @@ class NewPoll extends Component {
 		);
 	};
 
-	// when handleSaveQuestion is finished saving question 0 = loading/1 = finished
+	// when handleSaveQuestion is finished saving question 0 = loading/1 = finished, redirect to Dashboard
 	componentDidUpdate(prevProps) {
 		if (prevProps.loadingBar.default !== 0) {
 			this.props.history.push("/");
