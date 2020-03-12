@@ -4,6 +4,7 @@ This is a simple Redux Web Application that allows users to impersonate/log in a
 
 It's built with React, Redux, React Router, and React Thunk
 
+**Live Demo**: https://would-you-rather-project.netlify.com
 
 # Installation
 Clone the repository and use `npm install` to install the dependencies 
