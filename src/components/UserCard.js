@@ -54,10 +54,7 @@ class UserCard extends Component {
 						<div className="container">
 							<div className="row">
 								<div className="col-4">
-									<img
-										src={author.avatarURL}
-										alt="User Avatar"
-									/>
+									<img src={author.avatarURL} alt="User Avatar" />
 								</div>
 								<div className="col text-left">
 									{/* pass to child component */}
@@ -78,7 +75,7 @@ class UserCard extends Component {
 
 /*
 - figure out which child components to display if URL has a question_id
-	- if question_id doesn't exist
+	- if question_id passed from Dashboard exists
 		- get the question with id passed from Dashboard 
 		- set pollType to POLL
 		- get the author of the question
@@ -94,16 +91,13 @@ class UserCard extends Component {
 		  - check authedUser's answer property against the question_id 
 			 - set pollType to POLL_RESULTS 
 */
-const mapStateToProps = (
-	{ users, questions, authedUser },
-	{ match, question_id }
-) => {
+const mapStateToProps = ({ users, questions, authedUser }, { match, question_id }) => {
 	let question,
 		pollType,
 		badPath = false,
 		author;
 
-	// no question id in URL
+	// question id passed
 	if (question_id !== undefined) {
 		question = questions[question_id];
 		pollType = pollTypes.POLL;
